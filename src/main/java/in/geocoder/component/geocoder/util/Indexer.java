@@ -13,7 +13,16 @@ import org.apache.solr.common.SolrInputDocument;
 
 public class Indexer {
 	public static void main(String[] args) throws IOException, SolrServerException {
-		SolrServer server = new HttpSolrServer("http://localhost:8983/solr/collection1");
+		
+		String url = "http://localhost:8983/solr/collection1";
+		String filename = "/data/US.txt";
+		
+		if (args.length>=2) {
+			filename = args[0];
+			url = args[1];
+		}
+		
+		SolrServer server = new HttpSolrServer(url);
 
 		server.deleteByQuery("*:*");
 		server.commit();
@@ -21,7 +30,7 @@ public class Indexer {
 		Collection<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
 		
 		// Data source: http://download.geonames.org/export/dump/US.zip
-		BufferedReader br = new BufferedReader(new FileReader("/data/US.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(filename));
 		String line; 
 		int counter = 0;
 		while ((line=br.readLine())!=null) {

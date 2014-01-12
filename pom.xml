@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>geocoder.in</groupId>
-  <artifactId>geonames-coder</artifactId>
+  <artifactId>geonames-geocoder</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Geonames Coder</name>
-  <description>Geocoder based on GeoNames</description>
+  <name>Geonames Geocoder</name>
+  <description>A very simple Solr SearchComponent for a geocoder based on GeoNames</description>
   
   <dependencies>
   <dependency>
