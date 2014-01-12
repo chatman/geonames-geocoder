@@ -69,7 +69,6 @@
 	<str name="geoField">geo</str>
 	<str name="levelField">level</str>
 	<arr name="grammar">
-		<str>.</str>
 		<str>1</str>
 		<str>2</str>
 		<str>4</str>
@@ -77,16 +76,17 @@
 		<str>41</str>
 		<str>42</str>
 		<str>421</str>
-		<str>.1</str>
+		<str>.421</str>
+		<str>.42</str>
+		<str>.41</str>
+		<str>.21</str>
+		<str>42.</str>
 		<str>.2</str>
 		<str>.4</str>
-		<str>.21</str>
-		<str>.41</str>
-		<str>.42</str>
-		<str>.421</str>
+		<str>.1</str>
 		<str>2.</str>
 		<str>4.</str>
-		<str>42.</str>
+		<str>.</str>
 	</arr>
   </searchComponent>
 
