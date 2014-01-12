@@ -10,5 +10,6 @@ Setup
 * mvn package
 * Copy target/geonames-geocoder-0.0.1-SNAPSHOT.jar into WEB-INF/libs directory of your solr instance.
 * Run Solr.
-* Run the Indexer (java -cp geonames-geocoder-0.0.1.jar in.geocoder.component.geocoder.util.Indexer US.txt http://localhost:8983/solr/collection1
-* Try out queries: http://localhost:8983/solr/collection1/geocoder?terms.fl=admin4&q=pizza+near+san+francisco,+ca
+* Run the Indexer:
+<code>java -cp geonames-geocoder-0.0.1.jar in.geocoder.component.geocoder.util.Indexer US.txt http://localhost:8983/solr/collection1</code>
+* Try out queries: http://localhost:8983/solr/collection1/geocoder?q=pizza+near+san+francisco,+ca
