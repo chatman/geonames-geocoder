@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+  <luceneMatchVersion>4.6</luceneMatchVersion>
+
+  <dataDir>${solr.data.dir:}</dataDir>
+
+  <directoryFactory name="DirectoryFactory" 
+                    class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/> 
+
+  <codecFactory class="solr.SchemaCodecFactory"/>
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
+  <indexConfig>
+    <lockType>${solr.lock.type:native}</lockType>
+     <infoStream>true</infoStream>
+  </indexConfig>
+
+  <updateHandler class="solr.DirectUpdateHandler2">
+    <updateLog>
+      <str name="dir">${solr.ulog.dir:}</str>
+    </updateLog>
+     <autoCommit> 
+       <maxTime>${solr.autoCommit.maxTime:15000}</maxTime> 
+       <openSearcher>false</openSearcher> 
+     </autoCommit>
+
+     <autoSoftCommit> 
+       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime> 
+     </autoSoftCommit>
+  </updateHandler>
+
+  <requestHandler name="/select" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+       <int name="rows">10</int>
+       <str name="df">text</str>
+     </lst>
+  </requestHandler>
+  
+  <requestHandler name="/query" class="solr.SearchHandler">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+       <str name="wt">json</str>
+       <str name="indent">true</str>
+       <str name="df">text</str>
+     </lst>
+  </requestHandler>
+
+  <requestHandler name="/update" class="solr.UpdateRequestHandler"/>
+    
+  <requestHandler name="/update/json" class="solr.JsonUpdateRequestHandler">
+        <lst name="defaults">
+         <str name="stream.contentType">application/json</str>
+       </lst>
+  </requestHandler>
+
+
+  <requestHandler name="/admin/" 
+                  class="solr.admin.AdminHandlers" />
+  
+  <searchComponent name="geocoder" class="in.geocoder.component.GeocodingComponent">
+	<lst name="hierarchicalFields">
+		<str name="1">admin1</str>
+		<str name="2">admin2</str>
+		<str name="3">admin3</str>
+		<str name="4">admin4</str>
+	</lst>
+	<lst name="otherFields">
+	</lst>
+	<str name="geoField">geo</str>
+	<str name="levelField">level</str>
+	<arr name="grammar">
+		<str>.</str>
+		<str>1</str>
+		<str>2</str>
+		<str>4</str>
+		<str>21</str>
+		<str>41</str>
+		<str>42</str>
+		<str>421</str>
+		<str>.1</str>
+		<str>.2</str>
+		<str>.4</str>
+		<str>.21</str>
+		<str>.41</str>
+		<str>.42</str>
+		<str>.421</str>
+		<str>2.</str>
+		<str>4.</str>
+		<str>42.</str>
+	</arr>
+  </searchComponent>
+
+  <requestHandler name="/geocoder" class="solr.SearchHandler" startup="lazy">
+     <lst name="defaults">
+      <bool name="distrib">false</bool>
+    </lst>     
+    <arr name="components">
+      <str>geocoder</str>
+    </arr>
+  </requestHandler>
+
+  <admin>
+    <defaultQuery>*:*</defaultQuery>
+  </admin>
+
+</config>
