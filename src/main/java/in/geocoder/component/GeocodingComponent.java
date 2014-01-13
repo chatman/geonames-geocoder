@@ -21,8 +21,9 @@ import org.apache.hadoop.util.bloom.BloomFilter;
 import org.apache.hadoop.util.bloom.Key;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;
 import org.apache.lucene.search.BooleanQuery;
@@ -193,7 +194,9 @@ public class GeocodingComponent extends SearchComponent {
 		if (query==null)
 			return;
 		
-		List<String> tokens = tokenize(query, new SimpleAnalyzer(Version.LUCENE_46));
+		Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_46,
+				new CharArraySet(Version.LUCENE_46, new HashSet<String>(), false));
+		List<String> tokens = tokenize(query, analyzer);
 
 		List<Classification> classifications = classify (tokens, filterSet);
 

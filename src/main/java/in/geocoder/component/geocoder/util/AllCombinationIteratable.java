@@ -27,6 +27,8 @@ implements Iterator<Object[]>
 
 	public boolean hasNext() {
 		int s = this.counter.length;
+		if(s==0)
+			return false;
 		return this.counter[(s - 1)] < ((Object[])this.matrix.get(s - 1)).length;
 	}
 
