@@ -13,3 +13,8 @@ Setup
 * Run the Indexer:
 <code>java -cp geonames-geocoder-0.0.1.jar in.geocoder.component.geocoder.util.Indexer US.txt http://localhost:8983/solr/collection1</code>
 * Try out queries: http://localhost:8983/solr/collection1/geocoder?q=pizza+near+san+francisco,+ca
+
+License
+-------
+Apache 2.0
+http://www.apache.org/licenses/LICENSE-2.0
